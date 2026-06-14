@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Merge / Split — PDF Tools{% endblock %}
+{% block content %}
+<div class="row mb-3">
+  <div class="col">
+    <a href="/" class="text-decoration-none text-muted small"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <h2 class="h4 fw-bold mt-1">Merge / Split</h2>
+  </div>
+</div>
+
+<div class="card p-4 mb-4">
+  <form method="POST" enctype="multipart/form-data" class="pdf-form">
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Action</label>
+      <div class="d-flex gap-3">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="action" id="actionMerge" value="merge" checked>
+          <label class="form-check-label" for="actionMerge">Merge multiple PDFs into one</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="action" id="actionSplit" value="split">
+          <label class="form-check-label" for="actionSplit">Split one PDF into parts</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">PDF file(s)</label>
+      <input type="file" name="pdfs" class="form-control" accept=".pdf" multiple required>
+      <div class="form-text" id="fileHint">For merge: upload all PDFs to combine. They will be merged in filename order.</div>
+    </div>
+
+    <div id="splitOptions" style="display:none">
+      <p class="fw-semibold mb-2">Split options <span class="text-muted fw-normal">(choose one)</span></p>
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label class="form-label">Every N pages</label>
+          <input type="number" name="every" class="form-control" placeholder="e.g. 5" min="1">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Page ranges</label>
+          <input type="text" name="ranges" class="form-control" placeholder='e.g. 1-5,6-12,13-'>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Split before pages</label>
+          <input type="text" name="on_pages" class="form-control" placeholder="e.g. 6 13 20">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-info text-white">
+      <i class="bi bi-play-fill me-1"></i>Run
+    </button>
+  </form>
+</div>
+
+{% if links is defined %}
+  {% include "_results.html" %}
+{% endif %}
+{% endblock %}

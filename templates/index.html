@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}PDF Tools{% endblock %}
+{% block content %}
+<div class="row mb-4">
+  <div class="col">
+    <h1 class="h3 fw-bold mb-1">PDF Tools</h1>
+    <p class="text-muted mb-0">Upload PDFs, configure options, download results.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-4">
+    <a href="/extractor" class="text-decoration-none text-dark">
+      <div class="card tool-card h-100 p-3">
+        <div class="fs-1 mb-2 text-primary"><i class="bi bi-file-earmark-text"></i></div>
+        <h5 class="fw-semibold">Extract</h5>
+        <p class="text-muted small mb-0">Pull text and tables from PDFs into TXT, Markdown, CSV, or Excel.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/inventory" class="text-decoration-none text-dark">
+      <div class="card tool-card h-100 p-3">
+        <div class="fs-1 mb-2 text-success"><i class="bi bi-table"></i></div>
+        <h5 class="fw-semibold">Inventory</h5>
+        <p class="text-muted small mb-0">Scan a batch of PDFs and produce a metadata report (pages, author, encryption).</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/marker" class="text-decoration-none text-dark">
+      <div class="card tool-card h-100 p-3">
+        <div class="fs-1 mb-2 text-warning"><i class="bi bi-brush"></i></div>
+        <h5 class="fw-semibold">Mark</h5>
+        <p class="text-muted small mb-0">Add watermarks, stamps, or page numbers to one or many PDFs.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/merge-split" class="text-decoration-none text-dark">
+      <div class="card tool-card h-100 p-3">
+        <div class="fs-1 mb-2 text-info"><i class="bi bi-layout-split"></i></div>
+        <h5 class="fw-semibold">Merge / Split</h5>
+        <p class="text-muted small mb-0">Combine multiple PDFs into one, or split a PDF by page ranges or chunks.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/redactor" class="text-decoration-none text-dark">
+      <div class="card tool-card h-100 p-3">
+        <div class="fs-1 mb-2 text-danger"><i class="bi bi-shield-lock"></i></div>
+        <h5 class="fw-semibold">Redact</h5>
+        <p class="text-muted small mb-0">Permanently black out sensitive text — emails, phone numbers, or custom patterns.</p>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}

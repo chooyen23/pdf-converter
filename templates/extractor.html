@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Extract — PDF Tools{% endblock %}
+{% block content %}
+<div class="row mb-3">
+  <div class="col">
+    <a href="/" class="text-decoration-none text-muted small"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <h2 class="h4 fw-bold mt-1">Extract Text &amp; Tables</h2>
+  </div>
+</div>
+
+<div class="card p-4 mb-4">
+  <form method="POST" enctype="multipart/form-data" class="pdf-form">
+    <div class="mb-3">
+      <label class="form-label fw-semibold">PDF file(s)</label>
+      <input type="file" name="pdfs" class="form-control" accept=".pdf" multiple required>
+    </div>
+
+    <div class="row g-3 mb-3">
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Mode</label>
+        <select name="mode" class="form-select">
+          <option value="both" selected>Text + Tables</option>
+          <option value="text">Text only</option>
+          <option value="tables">Tables only</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Text format</label>
+        <select name="text_format" class="form-select">
+          <option value="txt" selected>TXT</option>
+          <option value="md">Markdown</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Table format</label>
+        <select name="table_format" class="form-select">
+          <option value="xlsx" selected>Excel (.xlsx)</option>
+          <option value="csv">CSV</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-play-fill me-1"></i>Extract
+    </button>
+  </form>
+</div>
+
+{% if links is defined %}
+  {% include "_results.html" %}
+{% endif %}
+{% endblock %}

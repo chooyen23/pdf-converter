@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Redact — PDF Tools{% endblock %}
+{% block content %}
+<div class="row mb-3">
+  <div class="col">
+    <a href="/" class="text-decoration-none text-muted small"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <h2 class="h4 fw-bold mt-1">Redact Sensitive Text</h2>
+  </div>
+</div>
+
+<div class="card p-4 mb-4">
+  <form method="POST" enctype="multipart/form-data" class="pdf-form">
+    <div class="mb-3">
+      <label class="form-label fw-semibold">PDF file(s)</label>
+      <input type="file" name="pdfs" class="form-control" accept=".pdf" multiple required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Built-in categories</label>
+      <div class="d-flex flex-wrap gap-3">
+        {% for cat in ["email", "phone", "ssn", "credit", "postcode", "date"] %}
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="categories" value="{{ cat }}" id="cat_{{ cat }}">
+          <label class="form-check-label" for="cat_{{ cat }}">{{ cat | capitalize }}</label>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Custom patterns <span class="text-muted fw-normal">(regex or exact strings, space-separated)</span></label>
+      <input type="text" name="patterns" class="form-control" placeholder='e.g. ACME-\d+ "Project X"'>
+    </div>
+
+    <div class="mb-3">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="whole_word" id="wholeWord">
+        <label class="form-check-label" for="wholeWord">Match whole words only</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-danger">
+      <i class="bi bi-play-fill me-1"></i>Redact
+    </button>
+  </form>
+</div>
+
+{% if links is defined %}
+  {% include "_results.html" %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+<div class="card p-4">
+  <h5 class="fw-semibold mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Results</h5>
+
+  {% if links %}
+    <p class="mb-2 text-muted small">Click to download:</p>
+    <ul class="list-group list-group-flush mb-3">
+      {% for f in links %}
+      <li class="list-group-item px-0">
+        <a href="/download/{{ f.path }}" class="text-decoration-none">
+          <i class="bi bi-download me-2 text-primary"></i>{{ f.name }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted small">No output files were produced.</p>
+  {% endif %}
+
+  {% if stdout %}
+    <p class="mb-1 fw-semibold small">Console output</p>
+    <pre class="output-box p-3 mb-2">{{ stdout }}</pre>
+  {% endif %}
+
+  {% if stderr %}
+    <p class="mb-1 fw-semibold small text-danger">Warnings / Errors</p>
+    <pre class="output-box p-3 text-danger">{{ stderr }}</pre>
+  {% endif %}
+</div>
